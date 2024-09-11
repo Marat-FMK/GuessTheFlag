@@ -55,7 +55,7 @@ struct ContentView: View {
             
             VStack{
                 
-
+                ProgressView(value: Float(result),total: 8 )
                 
                 Spacer()
                 
