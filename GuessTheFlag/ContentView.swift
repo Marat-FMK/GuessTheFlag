@@ -59,14 +59,14 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                Text("Guess the flag")
+                Text(" Guess the flag ")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
                 
                 VStack(spacing: 15) {
                    
                     VStack {
-                        Text("Tap the flag of")
+                        Text(" Tap the flag of ")
                             .foregroundStyle(.secondary)
                             .font(.subheadline.weight(.heavy))
                         
