@@ -11,7 +11,7 @@ struct Title: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(.system(size: 70))
-            .foregroundStyle( Color(red: 8/255, green: 37/255, blue: 239/255))
+            .foregroundStyle( Color(red: 9/255, green: 37/255, blue: 239/255))
     }
 }
 
@@ -35,11 +35,11 @@ struct FlagImage: View {
 
 
 struct ContentView: View {
-    @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "US"].shuffled()
-    @State private var correctAnswer = Int.random(in: 0...2)
+    @State private var countries = ["Estonia",  "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Spain", "UK", "US"].shuffled()
+    @State private var correctAnswer = Int.random(in: 0 ... 2)
     
     @State private var showingScore = false
-    @State private var scoreTitle = ""
+    @State private var scoreTitle = " "
     
     @State private var result = 0
     
