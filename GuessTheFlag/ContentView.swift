@@ -90,7 +90,7 @@ struct ContentView: View {
                         .rotation3DEffect(.degrees(animation && selectedFlag == number ? 360 : 0), axis: (x: 0, y: 1, z: 0))
                         .blur(radius: animation && selectedFlag != number ? 2 : 0)
                         .opacity(animation && selectedFlag != number ? 0.25 : 1)
-                        
+                        .scaleEffect(animation && selectedFlag != number ? 0.75 : 1)
                     }
                 }
                 .frame(maxWidth: .infinity)
