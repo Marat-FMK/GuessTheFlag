@@ -43,6 +43,8 @@ struct ContentView: View {
     
     @State private var result = 0
     
+    @State private var animation = false
+    @State private var selectedFlag = 0
     
     var body: some View {
         ZStack{
@@ -59,28 +61,35 @@ struct ContentView: View {
                 
                 Spacer()
                 
-                Text(" Guess the flag ")
+                Text("Guess the flag")
                     .font(.largeTitle.bold())
                     .foregroundStyle(.white)
                 
                 VStack(spacing: 15) {
                    
                     VStack {
-                        Text(" Tap the flag of ")
+                        Text("Tap the flag of")
                             .foregroundStyle(.secondary)
                             .font(.subheadline.weight(.heavy))
                         
                         Text(countries[correctAnswer])
-//                            .font(.largeTitle.weight(.semibold))
+//                          .font(.largeTitle.weight(.semibold))
                             .titleModifier()
                     }
                     
                     ForEach(0..<3) { number in
+                        
                         Button {
-                            flagTapped(number)
+                            withAnimation( .interactiveSpring(duration: 2) ){
+                               flagTapped(number)
+                               }
+                            
                         } label: {
                            FlagImage(number: number, countries: countries)
                         }
+                        .rotation3DEffect(.degrees(animation && selectedFlag == number ? 360 : 0), axis: (x: 0, y: 1, z: 0))
+                        
+                        
                     }
                 }
                 .frame(maxWidth: .infinity)
@@ -117,18 +126,24 @@ struct ContentView: View {
     }
     
     private func flagTapped(_ number: Int) {
+        selectedFlag = number
         if number == correctAnswer {
             scoreTitle = "Correct"
             result += 1
+            animation = true
         } else {
             scoreTitle = "Wrong, it \(countries[number]) flag !"
         }
-        showingScore = true
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            showingScore = true
+        }
+        
     }
-    
     private func askQuestion() {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
+        animation = false
     }
 }
 
